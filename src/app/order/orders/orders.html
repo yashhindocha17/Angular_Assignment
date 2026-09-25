@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>Order List</h2>
+
+  <div class="card mb-4" *ngFor="let order of orders">
+    <div class="card-header">
+      <strong>Order #{{ order.id }}</strong> — {{ order.customerName }} — {{ order.orderDate }}
+    </div>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let detail of order.orderDetails">
+
+        <span>{{ detail.productName }} (Qty: {{ detail.quantity }}) — ${{ detail.price }}</span>
+
+        <span class="badge"
+              [ngClass]="{
+                'bg-success': detail.status === 'Completed',
+                'bg-warning text-dark': detail.status === 'Pending',
+                'bg-danger': detail.status === 'Cancelled'
+              }">
+          {{ detail.status }}
+        </span>
+
+      </li>
+    </ul>
+  </div>
+</div>

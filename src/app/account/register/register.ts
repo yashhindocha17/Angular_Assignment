@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   imports: [ReactiveFormsModule,RouterLink],
@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Register {
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   
   registerForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -30,5 +31,8 @@ export class Register {
       return;
     }
     console.log('Registered:', this.registerForm.value);
+
+    this.router.navigateByUrl('/user/home');
+
   }
 }

@@ -23,7 +23,7 @@ export class Login {
       return;
     }
     console.log('Login attempt:', this.credentials);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/orders');
   }
 
 }
